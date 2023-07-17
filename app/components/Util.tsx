@@ -22,13 +22,13 @@ export default function Util({ onClickSetLoading, onDataFetched }: UtilProps) {
                 <input type="text" name="playlistLink" id="playlistLink"
                     onChange={handleInput}
                     className="
-                        p-2 bg-secondary w-full h-12 
+                        p-2 bg-secondary w-full h-12 font-body 
                         border-2 border-primary rounded-xl 
                         rounded-r-none focus:border-transparent focus:outline-none 
                         placeholder:text-text placeholder:text-opacity-50"
                     placeholder="https://www.youtube.com/playlist?list=PLu4wnki9NI_8VmJ7Qz_byhKwCquXcy6u9" />
                 <button
-                    className="bg-primary rounded-lg rounded-l-none p-3 text-secondary"
+                    className="bg-primary font-body rounded-lg rounded-l-none p-3 text-secondary"
                     onClick={handleClick}>Go!</button>
             </div>
         </div>

@@ -10,7 +10,7 @@ export default function Hero() {
             <div className="flex flex-col gap-4">
                 <h1 className="font-heading text-6xl text-primary">PlayLister</h1>
                 <p className="font-body text-base max-w-xs text-text">
-                    This app helps you to calculate the total length of any <PiYoutubeLogoFill size={20} className="inline-block" /> YouTube playlist. Just paste the URL of the playlist or any video from the playlist below and hit Go!
+                    This app helps you to calculate the total length of any <b>YouTube</b> playlist. Just paste the URL of the playlist or any video from the playlist below and hit Go!
                 </p>
                 <div className="flex gap-4">
                     <div className="flex items-end group gap-1 cursor-pointer" onClick={() => window.open("https://www.linkedin.com/in/marahim20/")}>
