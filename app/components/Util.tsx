@@ -28,7 +28,7 @@ export default function Util({ onClickSetLoading, onDataFetched }: UtilProps) {
                         placeholder:text-text placeholder:text-opacity-50"
                     placeholder="https://www.youtube.com/playlist?list=PLu4wnki9NI_8VmJ7Qz_byhKwCquXcy6u9" />
                 <button
-                    className="bg-primary font-body font-medium rounded-lg rounded-l-none p-3 px-6 text-secondary"
+                    className="bg-primary font-body font-medium rounded-lg rounded-l-none p-3 px-6 text-[#fff]"
                     onClick={handleClick}>Go!</button>
             </div>
         </div>

@@ -12,9 +12,9 @@ export default function Home() {
     const [isloading, setIsLoading] = useState(false);
     const [data, setData] = useState({});
     const handleDataFetched = (finaldata: any) => {
-        setData(finaldata); // Update the data state with fetched data
-        setIsLoading(false); // Set isLoading to false after data is fetched
-        setShowResult(true); // Show the result modal
+        setData(finaldata);
+        setIsLoading(false);
+        setShowResult(true);
     };
     return (
         <main className="flex flex-col items-center justify-between w-screen h-screen md:p-24 bg-background">

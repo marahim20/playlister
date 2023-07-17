@@ -6,11 +6,15 @@ export default async function fetchPlaylistDetails(
 ): Promise<any> {
     const playlistId = extractPlaylistId(playlistUrl);
     if (!playlistId) {
-        toast.error("Invalid playlist");
+        toast.error("Invalid URL entered!");
         return;
     }
     const apiKey = process.env.NEXT_PUBLIC_API_KEY;
     const videoIds = await extractVideoIds(playlistId, apiKey);
+    if (!videoIds) {
+        toast.error("Invalid Playlist ID!");
+        return;
+    }
     const videoDetails = await Promise.all(
         videoIds.map(async (videoId) => {
             return await extractVideoDetails(videoId, apiKey);
@@ -34,7 +38,7 @@ const extractPlaylistId = (playlistUrl: string) => {
         if (match && match[1]) {
             return match[1];
         } else {
-            toast.error("Invalid playlist URL");
+            return;
         }
     }
 };
@@ -45,23 +49,27 @@ const extractVideoIds = async (
 ) => {
     let pageToken = "";
     let videoIDs: string[] = [];
-
-    while (pageToken !== undefined) {
-        const response = await axios.get(
-            `https://youtube.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=contentDetails&pageToken=${pageToken}&playlistId=${playlistId}&key=${apiKey}`
-        );
-        if (response.status !== 200) {
-            toast.error("Error fetching playlist details");
-        } else {
-            const { nextPageToken, items } = response.data;
-            pageToken = nextPageToken;
-            videoIDs = [
-                ...videoIDs,
-                ...items.map((item: any) => item.contentDetails.videoId),
-            ];
+    try {
+        while (pageToken !== undefined) {
+            const response = await axios.get(
+                `https://youtube.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=contentDetails&pageToken=${pageToken}&playlistId=${playlistId}&key=${apiKey}`
+            );
+            if (response.status !== 200) {
+                return;
+            } else {
+                const { nextPageToken, items } = response.data;
+                pageToken = nextPageToken;
+                videoIDs = [
+                    ...videoIDs,
+                    ...items.map((item: any) => item.contentDetails.videoId),
+                ];
+            }
         }
+        return videoIDs;
+    } catch (error) {
+        console.log(error);
+        return null;
     }
-    return videoIDs;
 };
 
 const extractVideoDetails = async (
@@ -72,7 +80,7 @@ const extractVideoDetails = async (
         `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoId}&key=${apiKey}`
     );
     if (response.status !== 200) {
-        toast.error("Error fetching video details");
+        toast.error("Error fetching video details!");
     } else {
         const duration = response.data.items[0].contentDetails.duration;
         return {
