@@ -18,7 +18,7 @@ export default function Home() {
   return (
     <main className="flex h-screen w-screen flex-col items-center justify-between md:p-24 bg-background">
       {isloading && !showResult && <LoadingScreen />}
-      {showResult && <ResultModal onClose={() => setShowResult(false)} finaldata={data} />}
+      {showResult && <ResultModal onClose={() => { setShowResult(false) }} finaldata={data} />}
       <Hero />
       <Util onClickSetLoading={() => setIsLoading(true)} onDataFetched={(finaldata) => handleDataFetched(finaldata)} />
     </main>
