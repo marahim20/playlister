@@ -1,5 +1,7 @@
 # PlayLister App
 
+![App Screenshot](public/playlister_ss.png)
+
 PlayLister is a web application that allows users to input a YouTube playlist URL and get details about the playlist, such as the number of videos, average video length, total playlist length, and more.
 
 ## Features
