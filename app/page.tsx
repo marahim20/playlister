@@ -19,7 +19,7 @@ export default function Home() {
     return (
         <main className="flex flex-col items-center justify-between w-screen h-screen md:p-24 bg-background">
             {isloading && !showResult && <LoadingScreen />}
-            {showResult && (
+            {showResult && data && (
                 <ResultModal
                     onClose={() => {
                         setShowResult(false);
