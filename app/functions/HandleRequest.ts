@@ -67,7 +67,6 @@ const extractVideoIds = async (
         }
         return videoIDs;
     } catch (error) {
-        console.log(error);
         return null;
     }
 };
@@ -76,17 +75,21 @@ const extractVideoDetails = async (
     videoId: string,
     apiKey: string | undefined
 ) => {
-    const response = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoId}&key=${apiKey}`
-    );
-    if (response.status !== 200) {
-        toast.error("Error fetching video details!");
-    } else {
+    try {
+        const response = await axios.get(
+            `https://youtube.googleapis.com/youtube/v3/videos?part=contentDetails&id=${videoId}&key=${apiKey}`
+        );
+        if (response.status !== 200) {
+            return;
+        }
         const duration = response.data.items[0].contentDetails.duration;
         return {
             duration,
             videoId,
         };
+    } catch (error) {
+        toast.error("Something went wrong!");
+        return null;
     }
 };
 
