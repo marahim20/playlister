@@ -18,6 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <meta property='og:title' content='PlayLister' />
+        <meta property='og:description' content='This app helps you to calculate the total duration of a YouTube playlist.' />
+        <meta property='og:image' content='<generated>' />
+        <meta property="og:image:type" content="<generated>" />
+        <meta property='og:image:width' content='1200' />
+        <meta property='og:image:height' content='630' />
+        <meta property='og:url' content='https://ytplaylister.vercel.app/' />
+        <meta property='og:type' content='website' />
+        <meta property='og:site_name' content='PlayLister' />
+      </head>
       <body suppressHydrationWarning={true} className={` ${grandstander.variable} ${raleway.variable}`}>
         {children}
         <Analytics />
