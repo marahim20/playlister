@@ -2,7 +2,7 @@ import axios from "axios";
 import { toast } from "sonner";
 
 export default async function fetchPlaylistDetails(
-    playlistUrl: string
+    playlistUrl: string | null
 ): Promise<any> {
     const playlistId = extractPlaylistId(playlistUrl);
     if (!playlistId) {
@@ -31,7 +31,7 @@ export default async function fetchPlaylistDetails(
     return parsedData;
 }
 
-const extractPlaylistId = (playlistUrl: string) => {
+const extractPlaylistId = (playlistUrl: string | null) => {
     if (playlistUrl) {
         const reg = /[&?]list=([^&]+)/i;
         const match = reg.exec(playlistUrl);
